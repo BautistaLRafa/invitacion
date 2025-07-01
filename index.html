@@ -44,17 +44,33 @@
     .buttons a:hover {
       background-color: #e67700;
     }
+    .music-control {
+      width: 100%;
+      max-width: 400px;
+      background-color: #f59f00;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 0 0 12px 12px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <button class="music-control" onclick="document.getElementById('audio').play()">▶ Reproducir música</button>
+    <audio id="audio" loop>
+      <source src="The Beatles - Here Comes The Sun.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
     <img src="invitacion2.png" alt="Invitación Baby Shower" class="invitation-img">
     <div class="buttons">
-      <a href="https://example.com/confirmar" target="_blank">Confirmar ✅</a>
-      <a href="https://example.com/lista-regalos" target="_blank">Regalos 🎁</a>
+      <a href="https://example.com/confirmar" target="_blank">Confirmar</a>
+      <a href="https://example.com/lista-regalos" target="_blank">Regalos</a>
     </div>
   </div>
 </body>
 </html>
-
 
