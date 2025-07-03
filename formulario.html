@@ -2,137 +2,71 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.2, user-scalable=no" />
-  <title>Confirmar asistencia</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: url("invitacionFondo.png") center/cover no-repeat fixed;
-      display: flex;
-      justify-content: center;
-      align-items: start;
-      padding: 3rem 1rem;
-    }
-
-    form {
-      background-color: rgba(255,255,255,0.95);
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 500px;
-      width: 100%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      text-align: center;
-      color: #f59f00;
-      font-size: 1.8rem;
-    }
-
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      margin-top: 1.5rem;
-      background-color: #f59f00;
-      color: white;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #e67700;
-    }
-
-    .mensaje {
-      margin-top: 1.5rem;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de Confirmación</title>
+  <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-  <form id="formulario">
-    <h2>Confirmar Asistencia</h2>
+  <div class="container">
+    <h2>Confirmar asistencia</h2>
+    <form id="formulario">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" name="nombre" required />
 
-    <label for="nombre">Nombre completo</label>
-    <input type="text" name="nombre" required />
+      <label for="tipoDocumento">Tipo de documento</label>
+      <select id="tipoDocumento" name="tipoDocumento" required>
+        <option value="">Selecciona</option>
+        <option value="CC">Cédula de ciudadanía</option>
+        <option value="TI">Tarjeta de identidad</option>
+        <option value="RC">Registro civil</option>
+      </select>
 
-    <label for="tipoDocumento">Tipo de documento</label>
-    <select name="tipoDocumento" required>
-      <option value="">Selecciona</option>
-      <option value="CC">CC</option>
-      <option value="TI">TI</option>
-      <option value="RC">RC</option>
-    </select>
+      <label for="numeroDocumento">Número de documento</label>
+      <input type="text" id="numeroDocumento" name="numeroDocumento" required />
 
-    <label for="numeroDocumento">Número de documento</label>
-    <input type="text" name="numeroDocumento" required />
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono" required />
 
-    <label for="telefono">Teléfono</label>
-    <input type="tel" name="telefono" required />
+      <div class="botones">
+        <button type="submit" class="boton">Confirmar asistencia 👍🏻</button>
+        <button type="button" class="boton" onclick="noAsistira()">No podré asistir 🙏🏻</button>
+      </div>
 
-    <button type="submit" name="asistencia" value="Confirmado">Confirmar asistencia 👍🏻</button>
-    <button type="button" onclick="cancelar()">No podré asistir 🙏🏻</button>
-
-    <div class="mensaje" id="mensaje"></div>
-  </form>
+      <div class="mensaje" id="mensaje"></div>
+    </form>
+  </div>
 
   <script>
     const formulario = document.getElementById('formulario');
     const mensaje = document.getElementById('mensaje');
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzmwZ9Ul9qub8avGjiq8bciWgFBYE05-uM7AvzwpYo/dev'; // <-- reemplaza con tu URL
+
+    const API_URL = 'https://script.google.com/macros/s/AKfycbXXXXXXX/exec'; // ← REEMPLAZAR con tu URL de Apps Script
 
     formulario.addEventListener('submit', function (e) {
       e.preventDefault();
-
-      const formData = new FormData(formulario);
-
-      fetch(API_URL, {
-        method: 'POST',
-        body: formData
-      })
-      .then(res => res.text())
-      .then(data => {
-        mensaje.innerHTML = data;
-        formulario.reset();
-      })
-      .catch(() => {
-        mensaje.innerHTML = '❌ Error al enviar confirmación.';
-      });
+      enviarFormulario("Confirmado");
     });
 
-    function cancelar() {
+    function noAsistira() {
+      enviarFormulario("No asistirá");
+    }
+
+    function enviarFormulario(asistencia) {
       const formData = new FormData(formulario);
-      formData.set('asistencia', 'No asistirá');
+      formData.append('asistencia', asistencia);
 
       fetch(API_URL, {
         method: 'POST',
         body: formData
       })
-      .then(res => res.text())
-      .then(data => {
-        mensaje.innerHTML = data;
-        formulario.reset();
-      })
-      .catch(() => {
-        mensaje.innerHTML = '❌ Error al registrar tu respuesta.';
-      });
+        .then(res => res.text())
+        .then(texto => {
+          mensaje.innerHTML = texto;
+          formulario.reset();
+        })
+        .catch(() => {
+          mensaje.innerHTML = '❌ Ocurrió un error al enviar los datos.';
+        });
     }
   </script>
 </body>
