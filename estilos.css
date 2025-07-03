@@ -67,3 +67,55 @@ body {
   background-color: #e67700;
 }
 
+.form-body {
+  margin: 0;
+  padding: 0;
+  background: url('invitacionFondo.png') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.form-wrapper h2 {
+  text-align: center;
+  color: #f59f00;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+}
+
+.form-wrapper label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.form-wrapper input,
+.form-wrapper select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.mensaje {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: green;
+}
+
