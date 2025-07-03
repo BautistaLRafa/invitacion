@@ -48,3 +48,37 @@ body {
 .boton:hover {
   background-color: #e67700;
 }
+
+form {
+  margin-top: 2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.mensaje {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: green;
+}
+
