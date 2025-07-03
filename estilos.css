@@ -1,32 +1,26 @@
-body {
+/* ---------- Estilo general ---------- */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
 }
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+/* ---------- INDEX: Contenedor de la invitación ---------- */
 .container {
   position: relative;
   width: 100%;
   max-width: 420px;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-}
-
-.fade-in {
-  animation: fadeIn 1.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .invitation-img {
@@ -36,6 +30,15 @@ body {
   object-fit: contain;
   display: block;
   flex-grow: 1;
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .buttons {
@@ -49,7 +52,8 @@ body {
   box-sizing: border-box;
 }
 
-.boton {
+.boton,
+.buttons a {
   background-color: #f59f00;
   color: white;
   padding: 12px 0;
@@ -63,19 +67,20 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.boton:hover {
+.boton:hover,
+.buttons a:hover {
   background-color: #e67700;
 }
 
+/* ---------- FORMULARIO ---------- */
 .form-body {
-  margin: 0;
-  padding: 0;
   background: url('invitacionFondo.png') no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 
 .form-wrapper {
@@ -84,7 +89,7 @@ body {
   border-radius: 12px;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .form-wrapper h2 {
@@ -94,8 +99,13 @@ body {
   font-size: 1.6rem;
 }
 
+/* Campos */
+.form-wrapper form {
+  display: flex;
+  flex-direction: column;
+}
+
 .form-wrapper label {
-  display: block;
   margin-top: 1rem;
   font-weight: bold;
   font-size: 1rem;
@@ -110,12 +120,23 @@ body {
   font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
+/* Botones dentro del formulario */
+.form-wrapper .buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Mensaje final */
 .mensaje {
   margin-top: 1.5rem;
   font-size: 1.1rem;
   text-align: center;
   color: green;
 }
+
 
