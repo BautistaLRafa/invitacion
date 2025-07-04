@@ -6,66 +6,53 @@
   <title>Confirmar Asistencia</title>
   <link rel="stylesheet" href="estilos.css" />
 </head>
-<body class="form-body">
-  <div class="form-wrapper fade-in">
-    <h2>Confirmar asistencia</h2>
-    <form id="formulario">
-      <label for="nombre">Nombre completo</label>
-      <input type="text" id="nombre" name="nombre" required />
+<body>
+  <div class="form-container fade-in">
+    <img src="invitacionFondo.png" alt="Fondo" class="form-fondo" />
 
-      <label for="tipoDocumento">Tipo de documento</label>
-      <select id="tipoDocumento" name="tipoDocumento" required>
-        <option value="">Selecciona</option>
-        <option value="CC">Cédula</option>
-        <option value="TI">Tarjeta de Identidad</option>
-        <option value="RC">Registro Civil</option>
-      </select>
+    <div class="form-wrapper">
+      <h2>Confirmar asistencia</h2>
+      <form id="formulario">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" required />
 
-      <label for="numeroDocumento">Número de documento</label>
-      <input type="text" id="numeroDocumento" name="numeroDocumento" required />
+        <label for="tipoDocumento">Tipo de documento</label>
+        <select id="tipoDocumento" name="tipoDocumento" required>
+          <option value="">Selecciona</option>
+          <option value="CC">Cédula</option>
+          <option value="TI">Tarjeta de Identidad</option>
+          <option value="RC">Registro Civil</option>
+        </select>
 
-      <label for="telefono">Teléfono</label>
-      <input type="tel" id="telefono" name="telefono" required />
+        <label for="numeroDocumento">Número de documento</label>
+        <input type="text" id="numeroDocumento" name="numeroDocumento" required />
 
-      <div class="buttons">
-        <button type="submit" class="boton">Confirmar ✅</button>
-        <button type="button" class="boton" onclick="noAsistira()">No podré asistir 🙏🏻</button>
-      </div>
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required />
 
-      <div class="mensaje" id="mensaje"></div>
-    </form>
+        <div class="buttons">
+          <button type="submit" class="boton">Confirmar ✅</button>
+          <button type="button" class="boton" onclick="noAsistira()">No podré asistir 🙏🏻</button>
+        </div>
+
+        <div class="mensaje" id="mensaje"></div>
+      </form>
+    </div>
   </div>
 
   <script>
     const formulario = document.getElementById('formulario');
     const mensaje = document.getElementById('mensaje');
-    const API_URL = 'https://script.google.com/macros/s/AKfycbTUSCRIPTURL/exec'; // ← Reemplaza con tu URL real
 
     formulario.addEventListener('submit', function (e) {
       e.preventDefault();
-      enviarFormulario("Confirmado");
+      mensaje.innerHTML = "✅ Confirmación recibida (simulada)";
+      formulario.reset();
     });
 
     function noAsistira() {
-      enviarFormulario("No asistirá");
-    }
-
-    function enviarFormulario(asistencia) {
-      const formData = new FormData(formulario);
-      formData.append('asistencia', asistencia);
-
-      fetch(API_URL, {
-        method: 'POST',
-        body: formData
-      })
-      .then(res => res.text())
-      .then(texto => {
-        mensaje.innerHTML = texto;
-        formulario.reset();
-      })
-      .catch(() => {
-        mensaje.innerHTML = '❌ Ocurrió un error al enviar los datos.';
-      });
+      mensaje.innerHTML = "✅ Gracias por confirmar. Te extrañaremos 😊";
+      formulario.reset();
     }
   </script>
 </body>
