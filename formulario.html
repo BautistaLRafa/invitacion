@@ -41,19 +41,36 @@
   </div>
 
   <script>
-    const formulario = document.getElementById('formulario');
-    const mensaje = document.getElementById('mensaje');
+   const formulario = document.getElementById('formulario');
+   const mensaje = document.getElementById('mensaje');
 
-    formulario.addEventListener('submit', function (e) {
-      e.preventDefault();
-      mensaje.innerHTML = "✅ Confirmación recibida (simulada)";
-      formulario.reset();
-    });
+   formulario.addEventListener('submit', function (e) {
+     e.preventDefault();
+     mostrarMensajeConfirmado();
+     formulario.reset();
+   });
 
-    function noAsistira() {
-      mensaje.innerHTML = "✅ Gracias por confirmar. Te extrañaremos 😊";
-      formulario.reset();
-    }
-  </script>
+   function noAsistira() {
+     mostrarMensajeNoAsiste();
+     formulario.reset();
+   }
+
+   function mostrarMensajeConfirmado() {
+     mensaje.innerHTML = `
+       <p>🎉 <strong>Muchas gracias por confirmar.</strong></p>
+       <p>Nos alegra mucho que hagas parte de esta reunión. Puedes revisar la lista de regalos, pero no te preocupes, tu asistencia siempre será lo más valioso para nosotros.</p>
+     `;
+     mensaje.style.color = "#2b9348"; // verde amigable
+   }
+
+   function mostrarMensajeNoAsiste() {
+     mensaje.innerHTML = `
+        <p>🙏🏻 <strong>Muchas gracias por confirmar.</strong></p>
+       <p>Sabemos que estarás de corazón con nosotros. ¡Un abrazo!</p>
+     `;
+     mensaje.style.color = "#0077b6"; // azul cálido
+   }
+ </script>
+
 </body>
 </html>
