@@ -12,65 +12,78 @@
 
     <div class="form-wrapper">
       <h2>Confirmar asistencia</h2>
-      <form id="formulario">
-        <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" required />
+     <div id="formulario-container">
+  <form id="formulario">
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" name="nombre" required />
 
-        <label for="tipoDocumento">Tipo de documento</label>
-        <select id="tipoDocumento" name="tipoDocumento" required>
-          <option value="">Selecciona</option>
-          <option value="CC">Cédula</option>
-          <option value="TI">Tarjeta de Identidad</option>
-          <option value="RC">Registro Civil</option>
-        </select>
+    <label for="tipoDocumento">Tipo de documento</label>
+    <select id="tipoDocumento" name="tipoDocumento" required>
+      <option value="">Selecciona</option>
+      <option value="CC">Cédula</option>
+      <option value="TI">Tarjeta de Identidad</option>
+      <option value="RC">Registro Civil</option>
+    </select>
 
-        <label for="numeroDocumento">Número de documento</label>
-        <input type="text" id="numeroDocumento" name="numeroDocumento" required />
+    <label for="numeroDocumento">Número de documento</label>
+    <input type="text" id="numeroDocumento" name="numeroDocumento" required />
 
-        <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" required />
+    <label for="telefono">Teléfono</label>
+    <input type="tel" id="telefono" name="telefono" required />
 
-        <div class="buttons">
-          <button type="submit" class="boton">Confirmar ✅</button>
-          <button type="button" class="boton" onclick="noAsistira()">No podré asistir 🙏🏻</button>
-        </div>
-
-        <div class="mensaje" id="mensaje"></div>
-      </form>
+    <div class="buttons">
+      <button type="submit" class="boton">Confirmar ✅</button>
+      <button type="button" class="boton" onclick="noAsistira()">No podré asistir 🙏🏻</button>
     </div>
-  </div>
+  </form>
+</div>
 
-  <script>
-   const formulario = document.getElementById('formulario');
-   const mensaje = document.getElementById('mensaje');
+<!-- Mensaje final (inicialmente oculto) -->
+<div id="mensaje" class="mensaje" style="display: none;"></div>
 
-   formulario.addEventListener('submit', function (e) {
-     e.preventDefault();
-     mostrarMensajeConfirmado();
-     formulario.reset();
-   });
+ <script>
+  const formulario = document.getElementById('formulario');
+  const mensaje = document.getElementById('mensaje');
+  const contenedorFormulario = document.getElementById('formulario-container');
 
-   function noAsistira() {
-     mostrarMensajeNoAsiste();
-     formulario.reset();
-   }
+  formulario.addEventListener('submit', function (e) {
+    e.preventDefault();
+    mostrarMensajeConfirmado();
+  });
 
-   function mostrarMensajeConfirmado() {
-     mensaje.innerHTML = `
-       <p>🎉 <strong>Muchas gracias por confirmar.</strong></p>
-       <p>Nos alegra mucho que hagas parte de esta reunión. Puedes revisar la lista de regalos, pero no te preocupes, tu asistencia siempre será lo más valioso para nosotros.</p>
-     `;
-     mensaje.style.color = "#2b9348"; // verde amigable
-   }
+  function noAsistira() {
+    mostrarMensajeNoAsiste();
+  }
 
-   function mostrarMensajeNoAsiste() {
-     mensaje.innerHTML = `
-        <p>🙏🏻 <strong>Muchas gracias por confirmar.</strong></p>
-       <p>Sabemos que estarás de corazón con nosotros. ¡Un abrazo!</p>
-     `;
-     mensaje.style.color = "#0077b6"; // azul cálido
-   }
- </script>
+  function mostrarMensajeConfirmado() {
+    contenedorFormulario.style.display = "none";
+    mensaje.style.display = "block";
+    mensaje.style.color = "#2b9348";
+    mensaje.innerHTML = `
+      <p>🎉 <strong>Muchas gracias por confirmar.</strong></p>
+      <p>Nos alegra mucho que hagas parte de esta reunión.</p>
+      <p>Puedes revisar la lista de regalos, pero no te preocupes, tu asistencia siempre será lo más valioso para nosotros.</p>
+      <div class="buttons">
+        <a href="https://example.com/lista-regalos" class="boton" target="_blank">Ver regalos 🎁</a>
+        <a href="index.html" class="boton">Volver a la invitación 📝</a>
+      </div>
+    `;
+  }
+
+  function mostrarMensajeNoAsiste() {
+    contenedorFormulario.style.display = "none";
+    mensaje.style.display = "block";
+    mensaje.style.color = "#0077b6";
+    mensaje.innerHTML = `
+      <p>🙏🏻 <strong>Muchas gracias por confirmar.</strong></p>
+      <p>Sabemos que estarás de corazón con nosotros. ¡Un abrazo!</p>
+      <div class="buttons">
+        <a href="index.html" class="boton">Volver a la invitación 📝</a>
+      </div>
+    `;
+  }
+</script>
+
 
 </body>
 </html>
